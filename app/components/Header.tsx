@@ -1,7 +1,11 @@
+'use client'
+
 import Image from "next/image";
 import { Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
+import {motion} from "framer-motion";
+
 export default function Header() {
   const pathname = usePathname();
 
@@ -9,38 +13,114 @@ export default function Header() {
     return `${pathname === path ? "text-[#FAFAFA]" : "text-[#9DA0AE] hover:text-[#FAFAFA] transition-colors duration-100 ease-in-out"} ${baseClass}`;
   };
   return (
-    <>
-      <div className="flex border-b border-[rgba(250,250,250,0.2)] justify-between items-center px-6 py-4"> {/* mx instead of px? which better to look at? */}
-        <h1 className="font-bold text-xl cursor-pointer ">
-          <a href="/" className="text-[#FAFAFA] hover:text-[#FAFAFA]/80 transition-colors duration-100 ease-in-out">FlashGenius</a>
-        </h1>
+   <>
+      <motion.div
+        className="flex border-b border-[rgba(250,250,250,0.2)] justify-between items-center px-6 py-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }} // Slow fade-in for header
+      >
+        <motion.h1
+          className="font-bold text-xl cursor-pointer"
+          initial={{ opacity: 0, y: -20 }} // Start from above the viewport
+          animate={{ opacity: 1, y: 0 }}  // Slide in with fade-in
+          transition={{ duration: 0.8 }}   // Smooth animation
+        >
+          <a href="/" className="text-[#FAFAFA] hover:text-[#FAFAFA]/80 transition-colors duration-100 ease-in-out">
+            FlashGenius
+          </a>
+        </motion.h1>
 
-        <ul className="flex gap-10 text-sm">
-          <li className={pathLinkColor("/")}>
+        <motion.ul
+          className="flex gap-10 text-sm"
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.3, // Staggered animations for list items
+                delayChildren: 0.2,    // Delay before starting list animations
+              },
+            },
+          }}
+        >
+          <motion.li
+            className={pathLinkColor("/")}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <a href="/">Home</a>
-          </li>
-          <li>
-            {/* <a href="/features"> */}
-            <a href="/" className={pathLinkColor("/features")}>
-              Features
-            </a>
-          </li>
-        </ul>
+          </motion.li>
 
-        <div className="flex items-centerg gap-4">
-          <div className="border border-[rgba(250,250,250,0.2)] rounded-lg p-2 cursor-pointer hover:bg-[#FAFAFA]/5">
+          <motion.li
+            className={pathLinkColor("/features")}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <a href="/">Features</a>
+          </motion.li>
+        </motion.ul>
+
+        <div className="flex items-center gap-4">
+          <motion.div
+            className="border border-[rgba(250,250,250,0.2)] rounded-lg p-2 cursor-pointer hover:bg-[#FAFAFA]/5"
+            whileHover={{ scale: 1.2 }}    // Slightly enlarge on hover
+            whileTap={{ scale: 0.9 }}     // Shrink a bit when clicked
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 20, // More fluid motion when scaling
+            }}
+          >
             <Moon size={20} color="#0091FF" />
-          </div>
+          </motion.div>
 
-          <Button className="bg-[#0a0a0a]  hover:bg-[#FAFAFA] hover:text-[#0a0a0a] cursor-pointer transition-colors duration-200 ease-in-out">
-            Sign in
-          </Button>
+          <motion.div
+            whileHover={{
+              scale: 1.1, // Slight zoom-in effect on hover
+              rotate: 5,  // Small rotate on hover for dynamic interaction
+            }}
+            whileTap={{
+              scale: 0.95, // Shrink when clicked
+              rotate: -5, // Rotate in opposite direction for a tap effect
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 20,
+            }}
+          >
+            <Button className="bg-[#0a0a0a] hover:bg-[#FAFAFA] hover:text-[#0a0a0a] cursor-pointer transition-colors duration-200 ease-in-out">
+              Sign in
+            </Button>
+          </motion.div>
 
-          <Button className="bg-[#FAFAFA] text-[#0a0a0a] hover:bg-[#FAFAFA]/80  cursor-pointer transition-colors duration-200 ease-in-out">
-            Sign up
-          </Button>
+          <motion.div
+            whileHover={{
+              scale: 1.1, 
+              rotate: 5,   
+            }}
+            whileTap={{
+              scale: 0.95, 
+              rotate: -5,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 20,
+            }}
+          >
+            <Button className="bg-[#FAFAFA] text-[#0a0a0a] hover:bg-[#FAFAFA]/80 cursor-pointer transition-colors duration-200 ease-in-out">
+              Sign up
+            </Button>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </>
+
   );
 }

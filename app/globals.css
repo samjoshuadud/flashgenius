@@ -130,3 +130,18 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes flip {
+  0%, 25% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+}
+
+.flip-animation {
+  animation: flip 6s infinite linear;
+  transform-style: preserve-3d;
+}
+

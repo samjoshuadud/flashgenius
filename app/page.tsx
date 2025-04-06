@@ -1,38 +1,148 @@
 "use client";
 
 import Image from "next/image";
-import Header from "@/app/components/Header";
 import { Button } from "@/components/ui/button";
-import { MoveRight } from "lucide-react";
+import { MoveRight, Brain, BookOpen, Upload } from "lucide-react";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
 export default function Home() {
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    }),
+  };
+  const features = [
+    {
+      icon: <Upload size={27} className="text-[#FAFAFA]" />,
+      title: "PDF Upload & AI Generation",
+      description:
+        "Upload any PDF and let our AI generate perfect flashcards. Set the number of cards and let the magic happen.",
+    },
+    {
+      icon: <BookOpen size={27} className="text-[#FAFAFA] " />,
+      title: "Custom Flashcards",
+      description:
+        "Create your own flashcards manually. Organize them into decks for different subjects or topics.",
+    },
+    {
+      icon: <Brain size={27} className="text-[#FAFAFA]" />,
+      title: "Quiz Generation",
+      description:
+        "Test your knowledge with auto-generated quizzes based on your flashcards. Track your progress over time.",
+    },
+  ];
   return (
     <>
-      <Header />
-      {/*Hero Section*/}
+      {/* Hero Section */}
       <div className="flex flex-col">
         <div className="bg-gradient-to-b from-[#09090B] to-[#1E1E20]">
-        <div className="grid grid-cols-2 py-20 px-8 mx-auto max-w-7xl place-items-center ">
-          <div className="flex flex-col gap-6">
-            <h1 className="text-7xl font-bold">
-              Transform your learning with AI-powered flashcards
-            </h1>
-            <p className="text-[#9DA0AE] text-xl">
-              Upload PDFs, generate flashcards, and quiz yourself to master any
-              subject. FlashGenius makes studying smarter, not harder.
-            </p>
-            <div className="flex gap-4 ">
-              <Button className="bg-[#FAFAFA] text-[#0a0a0a] hover:bg-[#FAFAFA]/80 cursor-pointer transition-colors duration-200 ease-in-out py-5 px-6">
-                Get started
-                <MoveRight size={10} className="ml-2" />
-              </Button>
-              <Button className="bg-[#0a0a0a] hover:bg-[#FAFAFA] hover:text-[#0a0a0a] cursor-pointer transition-colors duration-200 ease-in-out py-5 px-6">
-                Sign in
-              </Button>
+          <div className="grid grid-cols-2 py-20  mx-auto max-w-7xl place-items-center ">
+            <div className="flex flex-col gap-10">
+              <motion.h1
+                className="text-7xl font-bold"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7 }}
+              >
+                Transform your learning with AI-powered flashcards
+              </motion.h1>
+
+              <motion.p
+                className="text-[#9DA0AE] text-xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              >
+                Upload PDFs, generate flashcards, and quiz yourself to master
+                any subject. FlashGenius makes studying smarter, not harder.
+              </motion.p>
+
+              <motion.div
+                className="flex gap-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+              >
+                <Button className="bg-[#FAFAFA] text-[#0a0a0a] hover:bg-[#FAFAFA]/80 cursor-pointer transition-colors duration-200 ease-in-out py-5 px-6">
+                  Get started
+                  <MoveRight size={10} className="ml-2" />
+                </Button>
+                <Button className="bg-[#0a0a0a] hover:bg-[#FAFAFA] hover:text-[#0a0a0a] cursor-pointer transition-colors duration-200 ease-in-out py-5 px-6">
+                  Sign in
+                </Button>
+              </motion.div>
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+            >
+              <Image
+                src="/Hero.png"
+                className="flip-animation"
+                alt="Hero Image"
+                width={287}
+                height={365}
+              />
+            </motion.div>
           </div>
-          <Image src="/Hero.png" alt="Hero Image" width={287} height={365} />
         </div>
+        {/* Features Section */}
+        <div className="flex flex-col gap-10 py-20 items-center">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+          >
+            <h1 className="text-5xl font-bold text-center mb-5">
+              Powerful Features for Effective Learning
+            </h1>
+            <p className="text-[#9DA0AE] text-center ">
+              FlashGenius combines AI technology with proven study methods to
+              help you learn faster and retain more.
+            </p>
+          </motion.div>
+
+          {/*Features Cards*/}
+          <div className="flex gap-8">
+            {features.map((features, i) => (
+              <motion.div
+                key={i}
+                className="flex flex-col gap-3 border border-[#252636] rounded-md max-w-78 p-6"
+                initial="hidden"
+                animate="visible"
+                variants={cardVariants}
+                custom={i}
+              >
+                <div className="bg-[#FAFAFA]/20 rounded-full w-12 h-12 p-3 flex justify-center items-center">
+                  {features.icon}
+                </div>
+                <h2 className="font-semibold text-lg">{features.title}</h2>
+                <p className="text-[#9DA0AE]">{features.description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </>
