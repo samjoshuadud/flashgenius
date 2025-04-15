@@ -1,0 +1,14 @@
+version: "3.8"               # Specifies the Compose file format version (stable & compatible)
+
+services:                    # Define app components as services
+  web:                       # Name of your service (you can name it anything)
+    build: .                 # Builds Dockerfile in the current directory (your Next.js app)
+    ports:
+      - "3000:3000"          # Maps host port 3000 → container port 3000
+    volumes:
+      - .:/app               # Mounts current dir (host) → /app inside the container
+      - /app/node_modules    # Prevents overwriting container's node_modules with host's
+    environment:             # Define environment variables
+      - NODE_ENV=development
+    command: npm run dev     # Overrides Dockerfile CMD to run dev mode (hot-reload)
+
