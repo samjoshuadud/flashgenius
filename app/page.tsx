@@ -6,7 +6,6 @@ import { MoveRight, Brain, BookOpen, Upload } from "lucide-react";
 import { motion } from "framer-motion"; // Import motion from framer-motion
 
 export default function Home() {
-
   const textVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -50,6 +49,24 @@ export default function Home() {
       description:
         "Test your knowledge with auto-generated quizzes based on your flashcards. Track your progress over time.",
     },
+  ];
+
+  const instructions = [
+    {
+      title: "Upload Content",
+      description:
+        "Upload your PDF study materials or create flashcards manually.",
+    },
+    {
+      title: "Generate Flashcards",
+      description:
+        "Our AI analyzes your content and creates perfect question-answer pairs.",
+    },
+    {
+      title: "Study & Quiz",
+      description:
+        "Use our quizzes to test your knowledge and track your progress.",
+    }
   ];
   return (
     <>
@@ -109,7 +126,7 @@ export default function Home() {
           </div>
         </div>
         {/* Features Section */}
-        <div className="flex flex-col gap-10 py-20 items-center">
+        <div className="flex flex-col gap-10 py-26 items-center">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -140,6 +157,45 @@ export default function Home() {
                 </div>
                 <h2 className="font-semibold text-lg">{features.title}</h2>
                 <p className="text-[#9DA0AE]">{features.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        {/* Instruction */}
+        <div className="flex flex-col gap-16 py-22 items-center bg-[#1E1E20]">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+          >
+            <h1 className="text-5xl font-bold text-center mb-5">
+              How FlashGenius Works
+            </h1>
+            <p className="text-[#9DA0AE] text-center ">
+              Our simple process makes learning efficient and effective.
+            </p>
+          </motion.div>
+
+          {/*Instructions Cards*/}
+          <div className="flex gap-8">
+            {instructions.map((instructions, i) => (
+              <motion.div
+                key={i}
+                className="flex flex-col gap-3 max-w-96 p-6 items-center justify-center"
+                initial="hidden"
+                animate="visible"
+                variants={cardVariants}
+                custom={i}
+              >
+                <div className="bg-[#D9D9D9] rounded-full w-15 h-15 p-3 flex justify-center items-center">
+                  <span className="text-[#0a0a0a] font-semibold text-lg">
+                    {i + 1}
+                  </span>
+                </div>
+                <h2 className="font-semibold text-lg">{instructions.title}</h2>
+                <p className="text-[#9DA0AE] text-center">
+                  {instructions.description}
+                  </p>
               </motion.div>
             ))}
           </div>
