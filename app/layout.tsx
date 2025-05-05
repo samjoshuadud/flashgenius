@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {Inter} from 'next/font/google';
+import { Inter } from "next/font/google";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 
@@ -20,10 +20,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans min-h-screen flex flex-col`}>
+    <html lang="en h-full">
+      <body
+        className={`${inter.variable} font-sans min-h-screen flex flex-col`}
+      >
         <Header />
-        {children}
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

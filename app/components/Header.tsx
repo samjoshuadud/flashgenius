@@ -56,12 +56,12 @@ export default function Header() {
           </motion.li>
 
           <motion.li
-            className={pathLinkColor("/features")}
+            className={pathLinkColor("/Features")}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <a href="/">Features</a>
+            <a href="/Features">Features</a>
           </motion.li>
         </motion.ul>
 
