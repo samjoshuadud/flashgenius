@@ -1,3 +1,4 @@
+'use client'
 import { Github } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -6,7 +7,9 @@ export default function Footer() {
     <footer className="flex justify-between border-t border-[rgba(250,250,250,0.2)] text-white p-8">
       <motion.div 
         className="flex gap-4 items-center"
-        initial={{ opacity: 0, y: 20 }} // Start from below the viewport
+        initial={{ opacity: 0 }} // Start with opacity 0
+        animate={{ opacity: 1 }} // Animate to opacity 1
+        transition={{ duration: 1 }} // Duration of the animation
       >
         <h2 className="text-lg font-bold">FlashGenius</h2>
         <p className="text-sm text-[#9DA0AE]">
@@ -20,3 +23,4 @@ export default function Footer() {
     </footer>
   );
 }
+
