@@ -66,7 +66,7 @@ export default function Home() {
       title: "Study & Quiz",
       description:
         "Use our quizzes to test your knowledge and track your progress.",
-    }
+    },
   ];
   return (
     <>
@@ -195,10 +195,34 @@ export default function Home() {
                 <h2 className="font-semibold text-lg">{instructions.title}</h2>
                 <p className="text-[#9DA0AE] text-center">
                   {instructions.description}
-                  </p>
+                </p>
               </motion.div>
             ))}
           </div>
+        </div>
+
+        <div className="bg-[#0a0a0a] py-20">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="bg-[#FAFAFA] max-w-7xl mx-auto rounded-lg p-4"
+          >
+            <div className="flex justify-between items-center px-10">
+              <div className="flex flex-col gap-10 py-16">
+                <h1 className="text-5xl text-[#0a0a0a] font-bold text-center mb-5">
+                  Ready to Transform Learning?
+                </h1>
+                <p className="text-[#9DA0AE] ">
+                  Join thousands of students who are already studying smarter
+                  with FlashGenius.
+                </p>
+              </div>
+              <Button className="bg-[#0a0a0a] hover:bg-[#FAFAFA] hover:text-[#0a0a0a] cursor-pointer transition-colors duration-200 ease-in-out py-5 px-6">
+                Create Free Account
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </div>
     </>

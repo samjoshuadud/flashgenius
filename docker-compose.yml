@@ -1,4 +1,3 @@
-version: "3.8"               # Specifies the Compose file format version (stable & compatible)
 
 services:                    # Define app components as services
   web:                       # Name of your service (you can name it anything)
