@@ -73,10 +73,10 @@ export default function Home() {
       {/* Hero Section */}
       <div className="flex flex-col">
         <div className="bg-gradient-to-b from-[#09090B] to-[#1E1E20]">
-          <div className="grid grid-cols-2 py-20  mx-auto max-w-7xl place-items-center ">
-            <div className="flex flex-col gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 py-12 lg:py-20 max-w-7xl place-items-center px-4 lg:px-8 xl:px-0 xl:mx-auto">
+            <div className="flex flex-col gap-6 lg:gap-10 text-center lg:text-left">
               <motion.h1
-                className="text-7xl font-bold"
+                className="text-4xl md:text-5xl lg:text-7xl font-bold"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7 }}
@@ -85,7 +85,7 @@ export default function Home() {
               </motion.h1>
 
               <motion.p
-                className="text-[#9DA0AE] text-xl"
+                className="text-[#9DA0AE] text-lg lg:text-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
@@ -95,7 +95,7 @@ export default function Home() {
               </motion.p>
 
               <motion.div
-                className="flex gap-4"
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
@@ -111,6 +111,7 @@ export default function Home() {
             </div>
 
             <motion.div
+              className="mt-8 lg:mt-0 hidden lg:block"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.6 }}
@@ -126,13 +127,14 @@ export default function Home() {
           </div>
         </div>
         {/* Features Section */}
-        <div className="flex flex-col gap-10 py-26 items-center">
+        <div className="flex flex-col gap-10 py-16 lg:py-26 items-center px-4 lg:px-8 xl:px-0">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={textVariants}
+            className="max-w-7xl"
           >
-            <h1 className="text-5xl font-bold text-center mb-5">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-5">
               Powerful Features for Effective Learning
             </h1>
             <p className="text-[#9DA0AE] text-center ">
@@ -142,11 +144,11 @@ export default function Home() {
           </motion.div>
 
           {/*Features Cards*/}
-          <div className="flex gap-8">
+          <div className="flex flex-col lg:flex-row gap-8 max-w-7xl px-0 xl:px-0">
             {features.map((features, i) => (
               <motion.div
                 key={i}
-                className="flex flex-col gap-3 border border-[#252636] rounded-md max-w-78 p-6"
+                className="flex flex-col gap-3 border border-[#252636] rounded-md p-6"
                 initial="hidden"
                 animate="visible"
                 variants={cardVariants}
@@ -162,13 +164,14 @@ export default function Home() {
           </div>
         </div>
         {/* Instruction */}
-        <div className="flex flex-col gap-16 py-22 items-center bg-[#1E1E20]">
+        <div className="flex flex-col gap-16 py-16 lg:py-22 items-center bg-[#1E1E20] px-4 lg:px-8 xl:px-0">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={textVariants}
+            className="max-w-7xl"
           >
-            <h1 className="text-5xl font-bold text-center mb-5">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-5">
               How FlashGenius Works
             </h1>
             <p className="text-[#9DA0AE] text-center ">
@@ -177,7 +180,7 @@ export default function Home() {
           </motion.div>
 
           {/*Instructions Cards*/}
-          <div className="flex gap-8">
+          <div className="flex flex-col lg:flex-row gap-8 max-w-7xl px-0 xl:px-0">
             {instructions.map((instructions, i) => (
               <motion.div
                 key={i}
@@ -201,29 +204,49 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-[#0a0a0a] py-20">
+        <motion.div
+          className="bg-[#0a0a0a] py-12 lg:py-20 px-4 lg:px-8 xl:px-0"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={textVariants}
-            className="bg-[#FAFAFA] max-w-7xl mx-auto rounded-lg p-4"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-[#FAFAFA] max-w-7xl xl:mx-auto rounded-lg p-4"
           >
-            <div className="flex justify-between items-center px-10">
-              <div className="flex flex-col gap-10 py-16">
-                <h1 className="text-5xl text-[#0a0a0a] font-bold text-center mb-5">
+            <div className="flex flex-col lg:flex-row justify-between items-center px-6 lg:px-10 gap-6 lg:gap-0">
+              <motion.div
+                className="flex flex-col gap-6 lg:gap-10 py-8 lg:py-16 text-center lg:text-left"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <h1 className="text-3xl md:text-4xl lg:text-5xl text-[#0a0a0a] font-bold mb-5">
                   Ready to Transform Learning?
                 </h1>
                 <p className="text-[#9DA0AE] ">
                   Join thousands of students who are already studying smarter
                   with FlashGenius.
                 </p>
-              </div>
-              <Button className="bg-[#0a0a0a] hover:bg-[#FAFAFA] hover:text-[#0a0a0a] cursor-pointer transition-colors duration-200 ease-in-out py-5 px-6">
-                Create Free Account
-              </Button>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button className="bg-[#0a0a0a] hover:bg-[#FAFAFA] hover:text-[#0a0a0a] cursor-pointer transition-colors duration-200 ease-in-out py-5 px-6 whitespace-nowrap">
+                  Create Free Account
+                </Button>
+              </motion.div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </>
   );

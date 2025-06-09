@@ -18,13 +18,13 @@ export default function Header() {
   return (
     <>
       <motion.div
-        className="flex border-b border-[rgba(250,250,250,0.2)] justify-between items-center px-6 py-4"
+        className="flex border-b border-[rgba(250,250,250,0.2)] justify-between items-center px-4 md:px-6 py-3 md:py-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }} // Slow fade-in for header
       >
         <motion.h1
-          className="font-bold text-xl cursor-pointer"
+          className="font-bold text-lg md:text-xl cursor-pointer"
           initial={{ opacity: 0, y: -20 }} // Start from above the viewport
           animate={{ opacity: 1, y: 0 }} // Slide in with fade-in
           transition={{ duration: 0.8 }} // Smooth animation
