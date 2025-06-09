@@ -146,7 +146,7 @@ export default function Header() {
             </svg>
           </motion.div>
         </div>
-        <MobileSideBar open={isOpen} setOpen={setIsOpen} />
+        <MobileSideBar open={isOpen} setOpen={setIsOpen} pathName={pathname} />
       </motion.div>
     </>
   );
